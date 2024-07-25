@@ -1,0 +1,44 @@
+GPT_code_review review system
+By Atishay Sharma
+
+The GPT Code Review Review System is a tool designed to facilitate the review of code written by developers. The system uses  Open AI's GPT 4 engine to analyze code and provide feedback on its quality, readability, and maintainability.
+
+This project provides a command-line tool to review code using the OpenAI GPT model. The tool reads a code file, sends it to the GPT model for review, and prints a detailed feedback report. The project consists of four main files: main.py, cli.py, error_handling.py, and gpt_integration.py.
+
+Project Design and implementation :
+
+    Separation of Concerns: 
+            The project is divided into multiple files, each handling distinct responsibilities. cli.py manages the command-line interface, error_handling.py handles retry logic and error management, and gpt_integration.py deals with interactions with the OpenAI GPT API.
+            Readability and Maintainability: This structure makes the codebase easier to read, maintain, and extend. Each module can be modified independently without affecting others.
+            Command-Line Interface:
+
+    Click Library: 
+            The click library is used for creating a user-friendly command-line interface. It provides decorators for defining commands and options, making the CLI easy to implement and extend.
+            Flexibility: The CLI accepts the file path and programming language as arguments, allowing users to review different files and languages easily.
+
+    Retry Logic:
+            Network requests to the GPT API may fail intermittently. To address this, a retry mechanism is implemented in error_handling.py, which attempts to generate feedback multiple times before giving up. This enhances the reliability of the tool.
+            User Feedback: 
+            During retry attempts, informative messages are printed to the console, keeping the user informed about the progress and any encountered issues.
+
+    Integration with GPT Model:
+
+        OpenAI API: 
+            The integration with the GPT model is handled in gpt_integration.py. The class GPTCodeReview encapsulates the logic for generating feedback from the GPT model.
+
+        Prompt Design: 
+            The prompt sent to the GPT model is designed to be comprehensive, instructing the model to check for coding standards, potential bugs, readability, performance, and provide detailed feedback.
+            Utilizing the GPT Model
+
+        Model Choice: 
+            The GPT-4 model is used for its advanced capabilities in understanding and generating natural language text, making it suitable for code review tasks.
+
+    Feedback Generation: 
+            The generate_feedback method constructs a prompt with the code and review criteria, sends it to the GPT model, and processes the response. The feedback includes line-by-line comments, an overall summary, suggestions for improvement, and detected issues with severity levels.
+
+File Descriptions
+    main.py: Entry point of the application. It invokes the CLI command to review the code.
+    Utilities/cli.py: Handles command-line interactions and defines the command for reviewing code.
+    Utilities/error_handling.py: Contains functions for generating feedback with retry logic in case of errors.
+    Utilities/gpt_integration.py: Integrates with the OpenAI GPT API to generate feedback for the provided code.
+    Requirements.txt : txt file for installing python dependencies.
